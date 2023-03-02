@@ -42,10 +42,6 @@ body {
 	opacity: 0.8;
 }
 
-.playing {
-	transform: scale(2);
-}
-
 .label {
 	position: absolute;
 	top: 50%;

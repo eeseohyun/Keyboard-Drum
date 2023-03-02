@@ -25,6 +25,17 @@ const app = () => {
 		return audio;
 	};
 
+	const playSound = (keyCode) => {
+		//키코드에 맞는 드럼사운드 출력
+		const $audio = get(`audio[data-key="${keyCode}"]`);
+		const $key = get(`div[data-key="${keyCode}"]`);
+		if ($key && $audio) {
+			$audio.currentTime = 0; //재생시점
+			$audio.loop = false; //반복재생하지 않음
+			$audio.play();
+		}
+	};
+
 	const keys = Array.from(getAll(".key"));
 	console.log(keys);
 	const init = () => {
@@ -33,6 +44,10 @@ const app = () => {
 			key.appendChild(audio);
 			key.dataset.key = drumSounds[index].key;
 		});
+		window.onkeydown = (e) => {
+			const keyCode = e.keyCode;
+			playSound(keyCode);
+		};
 	};
 	init();
 };
