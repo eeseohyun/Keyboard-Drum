@@ -17,6 +17,24 @@ const app = () => {
 		{ key: 88, sound: "snare.wav" },
 		{ key: 67, sound: "tom.wav" },
 	];
+	const getAudio = (index) => {
+		//<audio data-key="" src=""> </audio>
+		const audio = document.createElement("audio");
+		audio.dataset.key = drumSounds[index].key;
+		audio.src = "assets/sounds/" + drumSounds[index].sound;
+		return audio;
+	};
+
+	const keys = Array.from(getAll(".key"));
+	console.log(keys);
+	const init = () => {
+		keys.forEach((key, index) => {
+			const audio = getAudio(index);
+			key.appendChild(audio);
+			key.dataset.key = drumSounds[index].key;
+		});
+	};
+	init();
 };
 
 app();
