@@ -36,6 +36,12 @@ const app = () => {
 		}
 	};
 
+	const handleClick = (e) => {
+		console.log(e.target);
+		const keyCode = e.target.getAttribute("data-key");
+		playSound(keyCode);
+	};
+
 	const keys = Array.from(getAll(".key"));
 	console.log(keys);
 	const init = () => {
@@ -43,6 +49,7 @@ const app = () => {
 			const audio = getAudio(index);
 			key.appendChild(audio);
 			key.dataset.key = drumSounds[index].key;
+			key.addEventListener("click", handleClick);
 		});
 		window.onkeydown = (e) => {
 			const keyCode = e.keyCode;
